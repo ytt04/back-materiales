@@ -27,4 +27,15 @@ public class UbicacionController {
     public ResponseEntity<?> crearCiudad(@RequestBody Ciudad c) {
         return ResponseEntity.ok(new ApiResponse<>(200, "Ciudad creada", ciudadRepo.save(c)));
     }
+
+    @GetMapping("/departamentos")
+    public ResponseEntity<?> listarDepartamentos() {
+        return ResponseEntity.ok(new ApiResponse<>(200, "Lista de departamentos", departamentoRepo.findAll()));
+    }
+
+    @GetMapping("/ciudades")
+    public ResponseEntity<?> listarCiudades() {
+        return ResponseEntity.ok(new ApiResponse<>(200, "Lista de ciudades", ciudadRepo.findAll()));
+    }
+
 }
