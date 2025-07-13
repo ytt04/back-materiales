@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "1edae0cb-8f5f-4df1-a920-2570645567c5",
+		"name": "Materiales API",
+		"description": "Colección para probar la API REST de materiales, ciudades y departamentos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40242805",
+		"_collection_link": "https://trabajo-2151.postman.co/workspace/trabajo-Workspace~c38fe963-6452-493c-8628-8c3738ed31dc/collection/40242805-1edae0cb-8f5f-4df1-a920-2570645567c5?action=share&source=collection_link&creator=40242805"
+	},
+	"item": [
+		{
+			"name": "POST - Crear Departamento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"codigo\": \"CUN\",\n  \"nombre\": \"Cundinamarca\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/ubicacion/departamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ubicacion",
+						"departamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Crear Ciudad",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"codigo\": \"BOG\",\n  \"nombre\": \"Bogotá\",\n  \"departamento\": {\n    \"codigo\": \"CUN\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/ubicacion/ciudades",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ubicacion",
+						"ciudades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Crear Material",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Laptop Dell\",\n  \"descripcion\": \"Portátil de alto rendimiento\",\n  \"tipo\": \"Electrónico\",\n  \"estado\": \"Disponible\",\n  \"precio\": 4500000,\n  \"fechaCompra\": \"2025-07-10\",\n  \"fechaVenta\": null,\n  \"ciudad\": {\n    \"codigo\": \"BOG\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/materiales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Actualizar Material (ID = 1)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"nombre\": \"Laptop Dell XPS\",\n  \"descripcion\": \"Actualizado\",\n  \"tipo\": \"Electrónico\",\n  \"estado\": \"Mantenimiento\",\n  \"precio\": 4800000,\n  \"fechaCompra\": \"2025-07-10\",\n  \"fechaVenta\": null,\n  \"ciudad\": {\n    \"codigo\": \"BOG\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/materiales/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Listar todos los materiales",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/materiales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Materiales por tipo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/materiales/tipo/Electrónico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales",
+						"tipo",
+						"Electrónico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Materiales por ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/materiales/ciudad/BOG",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales",
+						"ciudad",
+						"BOG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Materiales por fecha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/materiales/fecha/2025-07-10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"materiales",
+						"fecha",
+						"2025-07-10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - LISTAR DEPARTAMENTOS",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

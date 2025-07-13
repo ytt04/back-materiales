@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/materiales")
+@CrossOrigin("http://localhost:4200")
 @Tag(name = "Materiales", description = "Operaciones CRUD de Material")
 public class MaterialController {
     @Autowired private MaterialService service;
@@ -26,7 +27,6 @@ public class MaterialController {
     public ResponseEntity<?> getByTipo(@PathVariable String tipo) {
         return ResponseEntity.ok(new ApiResponse<>(200, "Consulta exitosa", service.getByTipo(tipo)));
     }
-
     @GetMapping("/fecha/{fecha}")
     public ResponseEntity<?> getByFecha(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         return ResponseEntity.ok(new ApiResponse<>(200, "Consulta exitosa", service.getByFecha(fecha)));
@@ -54,4 +54,19 @@ public class MaterialController {
             return ResponseEntity.status(500).body(new ApiResponse<>(500, e.getMessage(), null));
         }
     }
+
+    @GetMapping("/filtros")
+    public ResponseEntity<?> filtrarMateriales(
+            @RequestParam(required = false) String tipo,
+            @RequestParam(required = false) String ciudad,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+
+        try {
+            return ResponseEntity.ok(new ApiResponse<>(200, "Consulta avanzada", service.buscarPorFiltros(tipo, ciudad, fecha)));
+        } catch (Exception e) {
+            e.printStackTrace(); // para ver el error exacto en consola
+            return ResponseEntity.status(500).body(new ApiResponse<>(500, "Error interno: " + e.getMessage(), null));
+        }
+    }
+
 }

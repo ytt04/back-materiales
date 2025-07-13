@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/ubicacion")
+@CrossOrigin("http://localhost:4200")
 @Tag(name = "Ubicación", description = "Creación de departamentos y ciudades")
 public class UbicacionController {
 
